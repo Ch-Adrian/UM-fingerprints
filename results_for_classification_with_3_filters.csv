@@ -1,0 +1,1 @@
+Dataset,Model,Filters,Metric,Baseline value,After filter application,Improvement (%),Filter metric R2,Filter metric Accuracy,Baseline metric R2,Baseline metric Accuracy,Mixed metric R2,Mixed metric Accuracy,Mixed metric roc_auc,Rest metric R2,Rest metric Accuracy,Rest metric roc_auc,Notes
