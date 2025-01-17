@@ -1,4 +1,4 @@
-Dataset,Model,Filters,baseline_rmse,mixed_rmse,improvement_percentage
+Dataset,Model,Filters,Baseline RMSE,Mixed RMSE,Improvement (%)
 lipophilicity,SVM,"BeyondRo5Filter, BMSFilter",0.820943746578348,0.8290903177498857,-0.992342192201634
 lipophilicity,SVM,"BeyondRo5Filter, BrenkFilter",0.820943746578348,0.8630462537789357,-5.128549596250509
 lipophilicity,SVM,"BeyondRo5Filter, FAF4DruglikeFilter",0.820943746578348,0.8531784336381046,-3.926540301221504

@@ -1,4 +1,4 @@
-Dataset,Model,Filters,Metric,Baseline value,After filter application,Improvement (%),Filter metric R2,Filter metric Accuracy,Baseline metric R2,Baseline metric Accuracy,Mixed metric R2,Mixed metric Accuracy,Mixed metric roc_auc,Rest metric R2,Rest metric Accuracy,Rest metric roc_auc,Notes
+Dataset,Model,Filters,Metric,Baseline RMSE,Filtered RMSE,Mixed RMSE,Rest RMSE,Improvement (%)
 esol,MLP,BeyondRo5Filter,1.2406571085472424,1.216442810613621,1.2326430826660448,1.325062100551351,1.9517316885384606
 esol,MLP,BMSFilter,1.2406571085472424,1.1910070362306304,1.287012517005717,1.5111887469774523,4.00191736899409
 esol,MLP,BrenkFilter,1.2406571085472424,1.2504610244168097,1.5441036918731896,1.42937028033849,-0.7902196184606858

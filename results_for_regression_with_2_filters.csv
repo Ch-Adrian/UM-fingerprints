@@ -1,4 +1,4 @@
-Dataset,Model,Filters,Metric,Baseline value,After filter application,Improvement (%),Filter metric R2,Filter metric Accuracy,Baseline metric R2,Baseline metric Accuracy,Mixed metric R2,Mixed metric Accuracy,Mixed metric roc_auc,Rest metric R2,Rest metric Accuracy,Rest metric roc_auc,Notes
+Dataset,Model,Filters,Baseline value,Baseline RMSE,Filtered RMSE,Mixed RMSE,Rest RMSE,Improvement (%)
 esol,SVM,"BeyondRo5Filter, BMSFilter",1.2761601881820541,1.1652675008306788,1.3266508083447828,1.4720139918479487,8.689558597604174
 esol,SVM,"BeyondRo5Filter, BrenkFilter",1.2761601881820541,1.2816016507377108,1.4987872264373303,1.4212275351048067,-0.42639337961234425
 esol,SVM,"BeyondRo5Filter, FAF4DruglikeFilter",1.2761601881820541,1.0665761473287418,1.5453208483723087,1.6359750640098232,16.423019836708264
