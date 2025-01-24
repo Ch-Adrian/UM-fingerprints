@@ -167,4 +167,66 @@ Klasyfikatory służące do klasyfikacji:
 * LogisticRegression
 * GaussianNB
 
+
+
 ## Wyniki klasyfikacji:
+
+### Zbiór BBBP:
+
+Dla jednego filtra:
+
+Odpowiednio dla klasyfikatorów:
+
+Dla dwóch filtrów:
+
+Odpowiednio dla klasyfikatorów:
+
+
+
+### Zbiór BACE:
+
+Dla jednego filtra:
+
+Odpowiednio dla klasyfikatorów:
+
+Dla dwóch filtrów:
+
+Odpowiednio dla klasyfikatorów:
+
+
+
+### Zbiór CLINTOX:
+
+Dla jednego filtra:
+
+Odpowiednio dla klasyfikatorów:
+
+Dla dwóch filtrów:
+
+Odpowiednio dla klasyfikatorów:
+
+
+
+## Wyniki regresji:
+
+### Zbiór ESOL:
+
+Dla jednego filtra:
+
+Odpowiednio dla klasyfikatorów:
+
+Dla dwóch filtrów:
+
+Odpowiednio dla klasyfikatorów:
+
+
+
+### Zbiór LIPOPHILICITY:
+
+Dla jednego filtra:
+
+Odpowiednio dla klasyfikatorów:
+
+Dla dwóch filtrów:
+
+Odpowiednio dla klasyfikatorów:
