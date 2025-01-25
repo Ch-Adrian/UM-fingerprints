@@ -167,45 +167,69 @@ Klasyfikatory służące do klasyfikacji:
 * LogisticRegression
 * GaussianNB
 
-
-
 ## Wyniki klasyfikacji:
 
 ### Zbiór BBBP:
 
 Dla jednego filtra:
 
-Odpowiednio dla klasyfikatorów:
+| Model                     | Filters               | Baseline value | Predicted ROC-AUC | Ratio [%] |
+|---------------------------|-----------------------|----------------|-------------------|-----------|
+| GradientBoostingClassifier| BrenkFilter          | 0.828296       | 0.850765          | 102.71    |
+| GradientBoostingClassifier| SureChEMBLFilter     | 0.828296       | 0.850644          | 102.70    |
+| GradientBoostingClassifier| ZINCBasicFilter      | 0.828296       | 0.847853          | 102.36    |
+| GradientBoostingClassifier| LipinskiFilter       | 0.828296       | 0.842091          | 101.67    |
+| GradientBoostingClassifier| PAINSFilter          | 0.828296       | 0.840738          | 101.50    |
 
 Dla dwóch filtrów:
 
-Odpowiednio dla klasyfikatorów:
-
-
+| Model                     | Filters                                | Baseline value | Predicted ROC-AUC | Ratio [%] |
+|---------------------------|----------------------------------------|----------------|-------------------|-----------|
+| GradientBoostingClassifier| RuleOfVeberFilter;SureChEMBLFilter    | 0.828586       | 0.854546          | 103.13    |
+| GradientBoostingClassifier| SureChEMBLFilter;ZINCBasicFilter      | 0.828586       | 0.851574          | 102.77    |
+| GradientBoostingClassifier| PAINSFilter;SureChEMBLFilter          | 0.828586       | 0.851357          | 102.75    |
+| GradientBoostingClassifier| MolecularWeightFilter;SureChEMBLFilter| 0.828586       | 0.849206          | 102.49    |
+| GradientBoostingClassifier| PAINSFilter;ZINCBasicFilter           | 0.828586       | 0.848276          | 102.38    |
 
 ### Zbiór BACE:
 
 Dla jednego filtra:
 
+| Model                     | Filters                                | Baseline value | Predicted ROC-AUC | Ratio [%] |
+|---------------------------|----------------------------------------|----------------|-------------------|-----------|
+| LogisticRegression        | PAINSFilter                           | 0.79796        | 0.798542          | 100.07    |
+| LogisticRegression        | BMSFilter                             | 0.79796        | 0.798049          | 100.01    |
+| LogisticRegression        | NIHFilter                             | 0.79796        | 0.798049          | 100.01    |
+| LogisticRegression        | MolecularWeightFilter                 | 0.79796        | 0.797378          | 99.93     |
+| LogisticRegression        | BeyondRo5Filter                       | 0.79796        | 0.795141          | 99.65     |
+
 Odpowiednio dla klasyfikatorów:
 
 Dla dwóch filtrów:
 
-Odpowiednio dla klasyfikatorów:
-
-
+| Filters                          | Model                      | Baseline [%] | Predicted ROC-AUC [%] | Relative Change [%] |
+|----------------------------------|----------------------------|---------------|------------------------|----------------------|
+| BMSFilter;PAINSFilter            | LogisticRegression         | 79.796        | 79.868                | +0.089              |
+| NIHFilter;PAINSFilter            | LogisticRegression         | 79.796        | 79.868                | +0.089              |
+| MolecularWeightFilter;PAINSFilter| LogisticRegression         | 79.796        | 79.850                | +0.067              |
+| BMSFilter;NIHFilter              | LogisticRegression         | 79.796        | 79.805                | +0.011              |
+| MolecularWeightFilter;NIHFilter  | LogisticRegression         | 79.796        | 79.707                | -0.112              |
 
 ### Zbiór CLINTOX:
 
 Dla jednego filtra:
 
-Odpowiednio dla klasyfikatorów:
+| Filters               | Model                      | Baseline [%]  | Predicted ROC-AUC [%] | Relative Change [%] |
+|-----------------------|----------------------------|---------------|-----------------------|---------------------|
+| InpharmaticaFilter    | GradientBoostingClassifier | 95.5          | 96.94                 | +1.53               |
+| LINTFilter            | GradientBoostingClassifier | 95.5          | 95.92                 | +0.46               |
+| PfizerFilter          | GradientBoostingClassifier | 95.5          | 95.37                 | -0.13               |
+| NIBRFilter            | GradientBoostingClassifier | 95.5          | 95.20                 | -0.30               |
+| BeyondRo5Filter       | GradientBoostingClassifier | 95.5          | 94.53                 | -1.00               |
 
 Dla dwóch filtrów:
 
-Odpowiednio dla klasyfikatorów:
-
-
+---
 
 ## Wyniki regresji:
 
@@ -213,11 +237,24 @@ Odpowiednio dla klasyfikatorów:
 
 Dla jednego filtra:
 
-Odpowiednio dla klasyfikatorów:
+| Filters                  | Baseline RMSE       | Predicted RMSE       | Ratio [%] | Model Name                |
+|--------------------------|---------------------|----------------------|-----------|--------------------------|
+| RuleOfFourFilter         | 2.090871e+12       | 1.384141e+10        | 0.00066   | SGD                      |
+| TiceInsecticidesFilter   | 3.293757           | 2.457469            | 74.61     | MLP                      |
+| REOSFilter               | 3.293757           | 2.469561            | 74.98     | MLP                      |
+| ValenceDiscoveryFilter   | 3.293757           | 2.480177            | 75.30     | MLP                      |
+| OpreaFilter              | 3.293757           | 2.549589            | 77.41     | MLP                      |
+
 
 Dla dwóch filtrów:
 
-Odpowiednio dla klasyfikatorów:
+| Filters                                  | Baseline RMSE       | Predicted RMSE       | Ratio [%] | Model Name                |
+|------------------------------------------|---------------------|----------------------|-----------|--------------------------|
+| RuleOfTwoFilter, RuleOfXuFilter          | 1.527575e+09       | 1.069540e+07        | 0.07      | SGD                      |
+| FAF4LeadlikeFilter, RuleOfTwoFilter      | 2.678578e+12       | 7.380681e+10        | 2.76      | SGD                      |
+| MolecularWeightFilter, ZINCBasicFilter   | 4.358456e+12       | 7.053065e+11        | 16.18     | SGD                      |
+| OpreaFilter, RuleOfTwoFilter             | 5.038074e+07       | 1.003934e+07        | 19.93     | SGD                      |
+| REOSFilter, RuleOfThreeFilter            | 4.362675e+12       | 1.016946e+12        | 23.31     | SGD                      |
 
 
 
@@ -225,8 +262,23 @@ Odpowiednio dla klasyfikatorów:
 
 Dla jednego filtra:
 
-Odpowiednio dla klasyfikatorów:
+| Filters                  | Model Name                | Baseline RMSE   | Predicted RMSE | Ratio [%] |
+|--------------------------|---------------------------|-----------------|----------------|-----------|
+| RuleOfXuFilter           | SGD                       | 3.4813e+11      | 2.8158e+11     | 80.88     |
+| NIBRFilter               | SGD                       | 3.4813e+11      | 2.8188e+11     | 80.97     |
+| BMSFilter                | SGD                       | 3.4813e+11      | 3.0181e+11     | 86.69     |
+| MolecularWeightFilter    | SGD                       | 3.4813e+11      | 3.1138e+11     | 89.44     |
+| BMSFilter                | MLP                       | 1.0169          | 0.9362         | 92.05     |
+
 
 Dla dwóch filtrów:
 
-Odpowiednio dla klasyfikatorów:
+| Filters                                 | Model Name                | Baseline RMSE   | Predicted RMSE | Ratio [%] |
+|-----------------------------------------|---------------------------|-----------------|----------------|-----------|
+| PfizerFilter, RuleOfTwoFilter           | SGD                       | 4.8207e+11      | 2.1405e+00     | 0.00      |
+| NIBRFilter, ZINCBasicFilter             | SGD                       | 4.8207e+11      | 2.5246e+11     | 52.37     |
+| MolecularWeightFilter, PAINSFilter      | SGD                       | 4.8207e+11      | 2.6430e+11     | 54.83     |
+| GlaxoFilter, LipinskiFilter             | SGD                       | 4.8207e+11      | 2.6855e+11     | 55.71     |
+| NIHFilter, ZINCBasicFilter              | SGD                       | 4.8207e+11      | 2.8961e+11     | 60.08     |
+
+
