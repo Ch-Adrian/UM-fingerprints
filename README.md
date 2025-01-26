@@ -501,4 +501,115 @@ SVM:
 
 ## Kod użyty do testowania:
 
+### Filtry i fingerprinty:
+```
+fingerprints = [
+    ECFPFingerprint(),
+    MACCSFingerprint(),
+    RDKitFingerprint(),
+    BeyondRo5Filter(),
+]
 
+filters = [
+    BeyondRo5Filter, BMSFilter, BrenkFilter, FAF4DruglikeFilter, FAF4LeadlikeFilter, GhoseFilter, GlaxoFilter, GSKFilter,
+    HaoFilter, InpharmaticaFilter, LINTFilter, LipinskiFilter, MLSMRFilter, MolecularWeightFilter, NIBRFilter, NIHFilter,
+    OpreaFilter, PAINSFilter, PfizerFilter, REOSFilter, RuleOfFourFilter, RuleOfThreeFilter, RuleOfTwoFilter, RuleOfVeberFilter,
+    RuleOfXuFilter, SureChEMBLFilter, TiceHerbicidesFilter, TiceInsecticidesFilter, ValenceDiscoveryFilter, ZINCBasicFilter, ZINCDruglikeFilter
+]
+```
+
+### Pipelines:
+```
+pipelines = {
+    "baseline_pipeline": make_pipeline(MolFromSmilesTransformer(), make_union(ECFPFingerprint(count=True), MACCSFingerprint()), LogisticRegression(max_iter=1000)),
+    "rf_pipeline": make_pipeline(MolFromSmilesTransformer(), make_union(ECFPFingerprint(count=True), MACCSFingerprint(), RDKitFingerprint()), RandomForestClassifier(random_state=41, class_weight='balanced')),
+    "gb_pipeline": make_pipeline(MolFromSmilesTransformer(), make_union(ECFPFingerprint(count=True), MACCSFingerprint(), RDKitFingerprint()), GradientBoostingClassifier()),
+    "knc_pipeline": make_pipeline(MolFromSmilesTransformer(), make_union(ECFPFingerprint(count=True), MACCSFingerprint(), RDKitFingerprint()), models[1]),
+    "svm_pipeline": make_pipeline(MolFromSmilesTransformer(), make_union(ECFPFingerprint(count=True), MACCSFingerprint(), RDKitFingerprint()), models[7]),
+    "GNB_pipeline": make_pipeline(MolFromSmilesTransformer(), make_union(ECFPFingerprint(count=True), MACCSFingerprint(), RDKitFingerprint()), models[2]),
+    "mlp_pipeline": make_pipeline(MolFromSmilesTransformer(), make_union(ECFPFingerprint(count=True), MACCSFingerprint(), RDKitFingerprint()), models[6]),
+}
+```
+
+### Dla klasyfikacji:
+```
+filter_f = filter()
+filter_f.fit(smiles_bace)
+filtered_mols = filter_f.transform(smiles_bace)
+filtered_labels = [ bace_mols_mapper[mol] for mol in filtered_mols ]
+rest_mols = [ mol for mol in smiles_bace if mol not in filtered_mols ]
+rest_labels = [ bace_mols_mapper[mol] for mol in rest_mols ]
+
+filtered_mols_bace_train, filtered_mols_bace_test, y_train_filtered, y_test_filtered = scaffold_train_test_split(
+    filtered_mols, filtered_labels, test_size=0.2
+)
+
+pipelines[pipeline_name].fit(filtered_mols_bace_train, y_train_filtered)
+y_pred_filtered = pipelines[pipeline_name].predict(filtered_mols_bace_test)
+y_proba_filtered = pipelines[pipeline_name].predict_proba(filtered_mols_bace_test)
+
+
+r2score_filtered, accuracy_filtered, roc_auc_filtered = calculate_scores(y_test_filtered, y_pred_filtered, y_proba_filtered)
+
+pipelines[pipeline_name].fit(filtered_mols_bace_train, y_train_filtered)
+y_pred_mixed = pipelines[pipeline_name].predict(smiles_bace_test)
+y_proba_mixed = pipelines[pipeline_name].predict_proba(smiles_bace_test)
+
+r2score_mixed, accuracy_mixed, roc_auc_mixed = calculate_scores(y_test, y_pred_mixed, y_proba_mixed)
+
+pipelines[pipeline_name].fit(filtered_mols_bace_train, y_train_filtered)
+y_pred_rest = pipelines[pipeline_name].predict(rest_mols)
+y_proba_rest = pipelines[pipeline_name].predict_proba(rest_mols)
+
+r2score_rest, accuracy_rest, roc_auc_rest = calculate_scores(rest_labels, y_pred_rest, y_proba_rest)
+```
+
+```
+def calculate_scores(y_test, y_pred, y_proba):
+    r2score = r2_score(y_test, y_pred)
+
+    accuracy = accuracy_score(y_test, y_pred)
+
+    roc_auc = roc_auc_score(y_test, y_proba[:, 1])
+    return r2score, accuracy, roc_auc
+```
+
+
+### Dla regresji:
+```
+filter_f = filters[0]()
+filter_f.fit(smiles_esol)
+filtered_mols = filter_f.transform(smiles_esol)
+
+filter_f2 = filters[1]()
+filter_f2.fit(filtered_mols)
+filtered_mols = filter_f2.transform(filtered_mols)
+
+filtered_labels = [esol_mols_mapper[mol] for mol in filtered_mols]
+rest_mols = [mol for mol in smiles_esol if mol not in filtered_mols]
+rest_labels = [esol_mols_mapper[mol] for mol in rest_mols]
+
+filtered_mols_train, filtered_mols_test, y_train_filtered, y_test_filtered = scaffold_train_test_split(
+    filtered_mols, filtered_labels, test_size=0.2
+)
+
+pipelines[pipeline_name].fit(filtered_mols_train, y_train_filtered)
+y_pred_filtered = pipelines[pipeline_name].predict(filtered_mols_test)
+filtered_rmse = np.sqrt(mean_squared_error(y_test_filtered, y_pred_filtered))
+
+pipelines[pipeline_name].fit(filtered_mols_train, y_train_filtered)
+y_pred_mixed = pipelines[pipeline_name].predict(smiles_esol_test)
+mixed_rmse = np.sqrt(mean_squared_error(y_test, y_pred_mixed))
+
+pipelines[pipeline_name].fit(filtered_mols_train, y_train_filtered)
+y_pred_rest = pipelines[pipeline_name].predict(rest_mols)
+rest_rmse = np.sqrt(mean_squared_error(rest_labels, y_pred_rest))
+
+improvement_percentage = (1 - (filtered_rmse / baseline_rmse)) * 100
+```
+
+```
+def calculate_scores(y_test, y_pred, y_proba):
+    rmse = root_mean_squared_error(y_pred=y_pred, y_true=y_test)
+    return rmse #r2score, accuracy, roc_auc
+```
