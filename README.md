@@ -173,47 +173,161 @@ Klasyfikatory służące do klasyfikacji:
 
 Dla jednego filtra:
 
-| Model                     | Filters               | Baseline value | Predicted ROC-AUC | Ratio [%] |
-|---------------------------|-----------------------|----------------|-------------------|-----------|
-| GradientBoostingClassifier| BrenkFilter          | 0.828296       | 0.850765          | 102.71    |
-| GradientBoostingClassifier| SureChEMBLFilter     | 0.828296       | 0.850644          | 102.70    |
-| GradientBoostingClassifier| ZINCBasicFilter      | 0.828296       | 0.847853          | 102.36    |
-| GradientBoostingClassifier| LipinskiFilter       | 0.828296       | 0.842091          | 101.67    |
-| GradientBoostingClassifier| PAINSFilter          | 0.828296       | 0.840738          | 101.50    |
+|         | Dataset | Model                     | Filters            | Baseline value | Predicted ROC-AUC | Ratio [%]  |
+|---------|---------|---------------------------|--------------------|----------------|-------------------|------------|
+| 33      | bbbp    | GradientBoostingClassifier | BrenkFilter       | 82.8296        | 2.2469            | 102.7126   |
+| 56      | bbbp    | GradientBoostingClassifier | SureChEMBLFilter  | 82.8296        | 2.2348            | 102.6981   |
+| 60      | bbbp    | GradientBoostingClassifier | ZINCBasicFilter   | 82.8296        | 1.9557            | 102.3612   |
+| 42      | bbbp    | GradientBoostingClassifier | LipinskiFilter    | 82.8296        | 1.3795            | 101.6655   |
+| 48      | bbbp    | GradientBoostingClassifier | PAINSFilter       | 82.8296        | 1.2442            | 101.5022   |
+
+Poszczególne modele:
+
+GaussianNB:
+|         | Filters               | Baseline value | Predicted ROC-AUC | Ratio [%]  |
+|---------|-----------------------|----------------|-------------------|------------|
+| 80      | PfizerFilter          | 53.7001        | 14.746           | 127.4598   |
+| 82      | RuleOfFourFilter      | 53.7001        | 1.243            | 102.3148   |
+| 75      | MolecularWeightFilter | 53.7001        | 0.0              | 100.0      |
+| 62      | BeyondRo5Filter       | 53.7001        | -0.8371          | 98.4411    |
+| 72      | LINTFilter            | 53.7001        | -0.9459          | 98.2386    |
+
+GradientBoostingClassifier:
+|         | Filters            | Baseline value | Predicted ROC-AUC | Ratio [%]  |
+|---------|--------------------|----------------|-------------------|------------|
+| 33      | BrenkFilter        | 82.8296        | 2.2469            | 102.7126   |
+| 56      | SureChEMBLFilter   | 82.8296        | 2.2348            | 102.6981   |
+| 60      | ZINCBasicFilter    | 82.8296        | 1.9557            | 102.3612   |
+| 42      | LipinskiFilter     | 82.8296        | 1.3795            | 101.6655   |
+| 48      | PAINSFilter        | 82.8296        | 1.2442            | 101.5022   |
+
+LogisticRegression:
+|         | Filters               | Baseline value | Predicted ROC-AUC | Ratio [%]  |
+|---------|-----------------------|----------------|-------------------|------------|
+| 25      | SureChEMBLFilter      | 83.622         | 0.3503            | 100.4189   |
+| 13      | MolecularWeightFilter | 83.622         | -0.0145           | 99.9827    |
+| 9       | InpharmaticaFilter    | 83.622         | -0.0459           | 99.9451    |
+| 10      | LINTFilter            | 83.622         | -0.0821           | 99.9018    |
+| 0       | BeyondRo5Filter       | 83.622         | -0.2899           | 99.6533    |
+
 
 Dla dwóch filtrów:
 
-| Model                     | Filters                                | Baseline value | Predicted ROC-AUC | Ratio [%] |
-|---------------------------|----------------------------------------|----------------|-------------------|-----------|
-| GradientBoostingClassifier| RuleOfVeberFilter;SureChEMBLFilter    | 0.828586       | 0.854546          | 103.13    |
-| GradientBoostingClassifier| SureChEMBLFilter;ZINCBasicFilter      | 0.828586       | 0.851574          | 102.77    |
-| GradientBoostingClassifier| PAINSFilter;SureChEMBLFilter          | 0.828586       | 0.851357          | 102.75    |
-| GradientBoostingClassifier| MolecularWeightFilter;SureChEMBLFilter| 0.828586       | 0.849206          | 102.49    |
-| GradientBoostingClassifier| PAINSFilter;ZINCBasicFilter           | 0.828586       | 0.848276          | 102.38    |
+|         | Dataset | Model                     | Filters                                   | Baseline value | Predicted ROC-AUC | Ratio [%]  |
+|---------|---------|---------------------------|------------------------------------------|----------------|-------------------|------------|
+| 877     | bbbp    | GradientBoostingClassifier | RuleOfVeberFilter;SureChEMBLFilter       | 82.8586        | 2.596             | 103.133    |
+| 892     | bbbp    | GradientBoostingClassifier | SureChEMBLFilter;ZINCBasicFilter         | 82.8586        | 2.2988            | 102.7744   |
+| 828     | bbbp    | GradientBoostingClassifier | PAINSFilter;SureChEMBLFilter             | 82.8586        | 2.2771            | 102.7481   |
+| 771     | bbbp    | GradientBoostingClassifier | MolecularWeightFilter;SureChEMBLFilter  | 82.8586        | 2.062             | 102.4886   |
+| 832     | bbbp    | GradientBoostingClassifier | PAINSFilter;ZINCBasicFilter              | 82.8586        | 1.969             | 102.3764   |
+
+Poszczególne modele:
+GaussianNB:
+|         | Filters                                   | Baseline value | Predicted ROC-AUC | Ratio [%]  |
+|---------|-------------------------------------------|----------------|-------------------|------------|
+| 921     | BeyondRo5Filter;PfizerFilter              | 53.7001        | 15.6314           | 129.1087   |
+| 1216    | MolecularWeightFilter;PfizerFilter        | 53.7001        | 15.2908           | 128.4744   |
+| 1273    | PAINSFilter;PfizerFilter                  | 53.7001        | 14.6916           | 127.3586   |
+| 1232    | NIBRFilter;PfizerFilter                   | 53.7001        | 12.9207           | 124.0608   |
+| 1290    | PfizerFilter;SureChEMBLFilter             | 53.7001        | 12.7491           | 123.7414   |
+
+GradientBoostingClassifier:
+|         | Filters                                   | Baseline value | Predicted ROC-AUC | Ratio [%]  |
+|---------|-------------------------------------------|----------------|-------------------|------------|
+| 877     | RuleOfVeberFilter;SureChEMBLFilter       | 82.8586        | 2.596             | 103.133    |
+| 892     | SureChEMBLFilter;ZINCBasicFilter         | 82.8586        | 2.2988            | 102.7744   |
+| 828     | PAINSFilter;SureChEMBLFilter             | 82.8586        | 2.2771            | 102.7481   |
+| 771     | MolecularWeightFilter;SureChEMBLFilter  | 82.8586        | 2.062             | 102.4886   |
+| 832     | PAINSFilter;ZINCBasicFilter              | 82.8586        | 1.969             | 102.3764   |
+
+Logistic regression:
+|         | Filters                                   | Baseline value | Predicted ROC-AUC | Ratio [%]  |
+|---------|-------------------------------------------|----------------|-------------------|------------|
+| 319     | MolecularWeightFilter;SureChEMBLFilter    | 83.622         | 0.1039            | 100.1242   |
+| 376     | PAINSFilter;SureChEMBLFilter              | 83.622         | 0.0435            | 100.052    |
+| 253     | LINTFilter;MolecularWeightFilter          | 83.622         | -0.0797           | 99.9047    |
+| 265     | LINTFilter;SureChEMBLFilter               | 83.622         | -0.1377           | 99.8353    |
+| 233     | InpharmaticaFilter;MolecularWeightFilter  | 83.622         | -0.1401           | 99.8324    |
+
 
 ### Zbiór BACE:
 
 Dla jednego filtra:
+|         | Dataset | Model            | Filters             | Baseline value | Predicted ROC-AUC | Ratio [%]  |
+|---------|---------|------------------|---------------------|----------------|-------------------|------------|
+| 17      | bace    | LogisticRegression | PAINSFilter         | 79.796         | 0.0582            | 100.0729   |
+| 1       | bace    | LogisticRegression | BMSFilter           | 79.796         | 0.0089            | 100.0112   |
+| 15      | bace    | LogisticRegression | NIHFilter           | 79.796         | 0.0089            | 100.0112   |
+| 13      | bace    | LogisticRegression | MolecularWeightFilter| 79.796         | -0.0582           | 99.9271    |
+| 0       | bace    | LogisticRegression | BeyondRo5Filter     | 79.796         | -0.2819           | 99.6468    |
 
-| Model                     | Filters                                | Baseline value | Predicted ROC-AUC | Ratio [%] |
-|---------------------------|----------------------------------------|----------------|-------------------|-----------|
-| LogisticRegression        | PAINSFilter                           | 0.79796        | 0.798542          | 100.07    |
-| LogisticRegression        | BMSFilter                             | 0.79796        | 0.798049          | 100.01    |
-| LogisticRegression        | NIHFilter                             | 0.79796        | 0.798049          | 100.01    |
-| LogisticRegression        | MolecularWeightFilter                 | 0.79796        | 0.797378          | 99.93     |
-| LogisticRegression        | BeyondRo5Filter                       | 0.79796        | 0.795141          | 99.65     |
 
 Odpowiednio dla klasyfikatorów:
+GaussianNB:
+|         | Filters              | Baseline value | Predicted ROC-AUC | Ratio [%]  |
+|---------|----------------------|----------------|-------------------|------------|
+| 78      | RuleOfFourFilter     | 59.4958        | 6.9502            | 111.6818   |
+| 76      | PfizerFilter         | 59.4958        | 0.3982            | 100.6692   |
+| 58      | BeyondRo5Filter      | 59.4958        | 0.0               | 100.0      |
+| 75      | PAINSFilter          | 59.4958        | 0.0               | 100.0      |
+| 71      | MolecularWeightFilter| 59.4958        | 0.0               | 100.0      |
+
+GradientBoostingClassifier:
+|         | Filters              | Baseline value | Predicted ROC-AUC | Ratio [%]  |
+|---------|----------------------|----------------|-------------------|------------|
+| 31      | BrenkFilter          | 78.5053        | 0.1633            | 100.208    |
+| 46      | PAINSFilter          | 78.5053        | -0.17             | 99.7834    |
+| 42      | MolecularWeightFilter| 78.5053        | -0.2394           | 99.6951    |
+| 29      | BeyondRo5Filter      | 78.5053        | -0.4698           | 99.4016    |
+| 44      | NIHFilter            | 78.5053        | -0.5637           | 99.2819    |
+
+LogisticRegression:
+|         | Filters             | Baseline value | Predicted ROC-AUC | Ratio [%]  |
+|---------|---------------------|----------------|-------------------|------------|
+| 17      | PAINSFilter         | 79.796         | 0.0582            | 100.0729   |
+| 1       | BMSFilter           | 79.796         | 0.0089            | 100.0112   |
+| 15      | NIHFilter           | 79.796         | 0.0089            | 100.0112   |
+| 13      | MolecularWeightFilter| 79.796         | -0.0582           | 99.9271    |
+| 0       | BeyondRo5Filter     | 79.796         | -0.2819           | 99.6468    |
+
 
 Dla dwóch filtrów:
+|         | Dataset | Model            | Filters                           | Baseline value | Predicted ROC-AUC | Ratio [%]  |
+|---------|---------|------------------|-----------------------------------|----------------|-------------------|------------|
+| 43      | bace    | LogisticRegression | BMSFilter;PAINSFilter             | 79.796         | 0.0716            | 100.0897   |
+| 313     | bace    | LogisticRegression | NIHFilter;PAINSFilter             | 79.796         | 0.0716            | 100.0897   |
+| 286     | bace    | LogisticRegression | MolecularWeightFilter;PAINSFilter | 79.796         | 0.0537            | 100.0673   |
+| 41      | bace    | LogisticRegression | BMSFilter;NIHFilter               | 79.796         | 0.0089            | 100.0112   |
+| 284     | bace    | LogisticRegression | MolecularWeightFilter;NIHFilter   | 79.796         | -0.0895           | 99.8879    |
 
-| Filters                          | Model                      | Baseline [%] | Predicted ROC-AUC [%] | Relative Change [%] |
-|----------------------------------|----------------------------|---------------|------------------------|----------------------|
-| BMSFilter;PAINSFilter            | LogisticRegression         | 79.796        | 79.868                | +0.089              |
-| NIHFilter;PAINSFilter            | LogisticRegression         | 79.796        | 79.868                | +0.089              |
-| MolecularWeightFilter;PAINSFilter| LogisticRegression         | 79.796        | 79.850                | +0.067              |
-| BMSFilter;NIHFilter              | LogisticRegression         | 79.796        | 79.805                | +0.011              |
-| MolecularWeightFilter;NIHFilter  | LogisticRegression         | 79.796        | 79.707                | -0.112              |
+Dla poszczególnych klasyfikatorów:
+GaussianNB:
+|         | Filters                            | Baseline value | Predicted ROC-AUC | Ratio [%]  |
+|---------|------------------------------------|----------------|-------------------|------------|
+| 1058    | LipinskiFilter;RuleOfFourFilter   | 59.4958        | 9.4846            | 115.9416   |
+| 872     | BrenkFilter;RuleOfFourFilter      | 59.4958        | 7.7577            | 113.0391   |
+| 846     | BMSFilter;RuleOfFourFilter        | 59.4958        | 5.5744            | 109.3695   |
+| 1116    | NIHFilter;RuleOfFourFilter        | 59.4958        | 5.5744            | 109.3695   |
+| 819     | BeyondRo5Filter;RuleOfFourFilter  | 59.4958        | 5.3709            | 109.0273   |
+
+GradientBoostingClassifier:
+|         | Filters                                | Baseline value | Predicted ROC-AUC | Ratio [%]  |
+|---------|----------------------------------------|----------------|-------------------|------------|
+| 465     | BrenkFilter;MolecularWeightFilter     | 78.4605        | 1.1811            | 101.5053   |
+| 713     | NIHFilter;PAINSFilter                 | 78.4605        | 0.3154            | 100.402    |
+| 443     | BMSFilter;PAINSFilter                 | 78.4605        | 0.2528            | 100.3222   |
+| 686     | MolecularWeightFilter;PAINSFilter     | 78.4605        | 0.1655            | 100.211    |
+| 414     | BeyondRo5Filter;NIHFilter             | 78.4605        | -0.0089           | 99.9886    |
+
+Logistic Regression:
+|         | Filters                           | Baseline value | Predicted ROC-AUC | Ratio [%]  |
+|---------|-----------------------------------|----------------|-------------------|------------|
+| 43      | BMSFilter;PAINSFilter             | 79.796         | 0.0716            | 100.0897   |
+| 313     | NIHFilter;PAINSFilter             | 79.796         | 0.0716            | 100.0897   |
+| 286     | MolecularWeightFilter;PAINSFilter | 79.796         | 0.0537            | 100.0673   |
+| 41      | BMSFilter;NIHFilter               | 79.796         | 0.0089            | 100.0112   |
+| 284     | MolecularWeightFilter;NIHFilter   | 79.796         | -0.0895           | 99.8879    |
+
 
 ### Zbiór CLINTOX:
 
@@ -236,49 +350,155 @@ Dla dwóch filtrów:
 ### Zbiór ESOL:
 
 Dla jednego filtra:
+|         | Dataset | Model   | Filters                    | Baseline RMSE   | Predicted RMSE | Ratio [%]     |
+|---------|---------|---------|----------------------------|-----------------|----------------|---------------|
+| 109     | esol    | SGD     | RuleOfFourFilter           | 2090871350297.0676 | 13841408329.8448 | 0.6619923472516942 |
+| 86      | esol    | MLP     | TiceInsecticidesFilter     | 3.2938          | 2.4575         | 74.60990308517724   |
+| 78      | esol    | MLP     | REOSFilter                 | 3.2938          | 2.4696         | 74.9770198420729    |
+| 87      | esol    | MLP     | ValenceDiscoveryFilter     | 3.2938          | 2.4802         | 75.29935419573019   |
+| 75      | esol    | MLP     | OpreaFilter                | 3.2938          | 2.5496         | 77.40670671396882   |
 
-| Filters                  | Baseline RMSE       | Predicted RMSE       | Ratio [%] | Model Name                |
-|--------------------------|---------------------|----------------------|-----------|--------------------------|
-| RuleOfFourFilter         | 2.090871e+12       | 1.384141e+10        | 0.00066   | SGD                      |
-| TiceInsecticidesFilter   | 3.293757           | 2.457469            | 74.61     | MLP                      |
-| REOSFilter               | 3.293757           | 2.469561            | 74.98     | MLP                      |
-| ValenceDiscoveryFilter   | 3.293757           | 2.480177            | 75.30     | MLP                      |
-| OpreaFilter              | 3.293757           | 2.549589            | 77.41     | MLP                      |
+Poszczególne modele:
+MLP:
+|         | Filters                   | Baseline RMSE | Predicted RMSE | Ratio [%]     |
+|---------|---------------------------|---------------|----------------|---------------|
+| 86      | TiceInsecticidesFilter     | 3.2938        | 2.4575         | 74.60990308517724   |
+| 78      | REOSFilter                 | 3.2938        | 2.4696         | 74.9770198420729    |
+| 87      | ValenceDiscoveryFilter     | 3.2938        | 2.4802         | 75.29935419573019   |
+| 75      | OpreaFilter                | 3.2938        | 2.5496         | 77.40670671396882   |
+| 64      | FAF4LeadlikeFilter         | 3.2938        | 2.614          | 79.36130325184905   |
 
+SGD:
+|         | Filters                  | Baseline RMSE   | Predicted RMSE     | Ratio [%]    |
+|---------|--------------------------|-----------------|--------------------|--------------|
+| 109     | RuleOfFourFilter          | 2090871350297.0676 | 13841408329.8448   | 0.6619923472516942 |
+| 112     | RuleOfVeberFilter         | 2090871350297.0676 | 1690997028431.8894 | 80.87523071142733   |
+| 119     | ZINCDruglikeFilter        | 2090871350297.0676 | 1719328981474.0334 | 82.23026161938436   |
+| 117     | ValenceDiscoveryFilter    | 2090871350297.0676 | 1838998975107.545  | 87.9537124484614    |
+| 104     | NIHFilter                 | 2090871350297.0676 | 1839889172541.5369 | 87.9962878768284    |
+
+SVM:
+|         | Filters                     | Baseline RMSE | Predicted RMSE | Ratio [%]    |
+|---------|-----------------------------|---------------|----------------|--------------|
+| 18      | REOSFilter                  | 2.3187        | 2.0385         | 87.91614449874835   |
+| 27      | ValenceDiscoveryFilter      | 2.3187        | 2.0724         | 89.38098898794338   |
+| 15      | OpreaFilter                 | 2.3187        | 2.0868         | 90.00165269422912   |
+| 26      | TiceInsecticidesFilter      | 2.3187        | 2.1043         | 90.7567344722589    |
+| 19      | RuleOfFourFilter            | 2.3187        | 2.1152         | 91.22359727092328   |
 
 Dla dwóch filtrów:
+|         | Dataset | Model | Filters                                | Baseline RMSE      | Predicted RMSE      | Ratio [%]    |
+|---------|---------|-------|----------------------------------------|--------------------|---------------------|--------------|
+| 1304    | esol    | SGD   | RuleOfTwoFilter, RuleOfXuFilter       | 1527574591.6454    | 10695400.6218       | 0.7001557030508945 |
+| 1020    | esol    | SGD   | FAF4LeadlikeFilter, RuleOfTwoFilter   | 2678578336139.304  | 73806809108.568     | 2.7554471009030657 |
+| 1210    | esol    | SGD   | MolecularWeightFilter, ZINCBasicFilter| 4358456165511.242  | 705306523944.1158   | 16.182485200270087 |
+| 1247    | esol    | SGD   | OpreaFilter, RuleOfTwoFilter          | 50380735.5623      | 10039339.289        | 19.926940678725476 |
+| 1280    | esol    | SGD   | REOSFilter, RuleOfThreeFilter         | 4362675333293.6665 | 1016946370299.6536  | 23.310154724071452 |
 
-| Filters                                  | Baseline RMSE       | Predicted RMSE       | Ratio [%] | Model Name                |
-|------------------------------------------|---------------------|----------------------|-----------|--------------------------|
-| RuleOfTwoFilter, RuleOfXuFilter          | 1.527575e+09       | 1.069540e+07        | 0.07      | SGD                      |
-| FAF4LeadlikeFilter, RuleOfTwoFilter      | 2.678578e+12       | 7.380681e+10        | 2.76      | SGD                      |
-| MolecularWeightFilter, ZINCBasicFilter   | 4.358456e+12       | 7.053065e+11        | 16.18     | SGD                      |
-| OpreaFilter, RuleOfTwoFilter             | 5.038074e+07       | 1.003934e+07        | 19.93     | SGD                      |
-| REOSFilter, RuleOfThreeFilter            | 4.362675e+12       | 1.016946e+12        | 23.31     | SGD                      |
+Poszczególne modele:
+MLP:
+|         | Filters                                | Baseline RMSE | Predicted RMSE | Ratio [%]    |
+|---------|----------------------------------------|---------------|----------------|--------------|
+| 764     | MolecularWeightFilter, ZINCBasicFilter | 1.1582        | 1.016          | 87.72056901314093 |
+| 629     | GlaxoFilter, ZINCBasicFilter          | 1.1519        | 1.0169         | 88.28439323406874 |
+| 730     | LipinskiFilter, ZINCBasicFilter       | 1.1626        | 1.0352         | 89.03548552570231 |
+| 451     | BeyondRo5Filter, GlaxoFilter          | 1.2011        | 1.0837         | 90.22734451365557 |
+| 869     | RuleOfVeberFilter, ZINCBasicFilter   | 1.158         | 1.0513         | 90.78474787155632 |
 
+SGD:
+|         | Filters                                | Baseline RMSE      | Predicted RMSE      | Ratio [%]    |
+|---------|----------------------------------------|---------------------|---------------------|--------------|
+| 1304    | RuleOfTwoFilter, RuleOfXuFilter       | 1527574591.6454     | 10695400.6218       | 0.7001557030508945 |
+| 1020    | FAF4LeadlikeFilter, RuleOfTwoFilter   | 2678578336139.304   | 73806809108.568     | 2.7554471009030657 |
+| 1210    | MolecularWeightFilter, ZINCBasicFilter| 4358456165511.242   | 705306523944.1158   | 16.182485200270087 |
+| 1247    | OpreaFilter, RuleOfTwoFilter          | 50380735.5623       | 10039339.289        | 19.926940678725476 |
+| 1280    | REOSFilter, RuleOfThreeFilter         | 4362675333293.6665  | 1016946370299.6536  | 23.310154724071452 |
 
+SVM:
+|         | Filters                                | Baseline RMSE      | Predicted RMSE      | Ratio [%]    |
+|---------|----------------------------------------|---------------------|---------------------|--------------|
+| 167     | GlaxoFilter, MolecularWeightFilter     | 1.2799              | 1.02                | 79.69570757034047 |
+| 171     | GlaxoFilter, PAINSFilter               | 1.2805              | 1.0213              | 79.75787952899192 |
+| 306     | MolecularWeightFilter, PAINSFilter     | 1.2709              | 1.0215              | 80.37809444768097 |
+| 183     | GlaxoFilter, ZINCBasicFilter           | 1.2683              | 1.1397              | 89.86234696172998 |
+| 65      | BrenkFilter, InpharmaticaFilter       | 1.4886              | 1.4184              | 95.28249695920002 |
 
 ### Zbiór LIPOPHILICITY:
 
 Dla jednego filtra:
+| Dataset | Model      | Filters             | Baseline RMSE      | Predicted RMSE      | Ratio [%]    |
+|---------|------------|---------------------|---------------------|---------------------|--------------|
+| 86      | lipophilicity | SGD                 | RuleOfXuFilter      | 348130841015.0978    | 281581062897.8752    | 80.88368789068694 |
+| 76      | lipophilicity | SGD                 | NIBRFilter          | 348130841015.0978    | 281880434402.9831    | 80.96968185325427 |
+| 63      | lipophilicity | SGD                 | BMSFilter           | 348130841015.0978    | 301807893612.5406    | 86.69381107761487 |
+| 75      | lipophilicity | SGD                 | MolecularWeightFilter | 348130841015.0978    | 311381299657.7815    | 89.44375590218894 |
+| 32      | lipophilicity | MLP                 | BMSFilter           | 1.0169               | 0.9362              | 92.05491741228104 |
 
-| Filters                  | Model Name                | Baseline RMSE   | Predicted RMSE | Ratio [%] |
-|--------------------------|---------------------------|-----------------|----------------|-----------|
-| RuleOfXuFilter           | SGD                       | 3.4813e+11      | 2.8158e+11     | 80.88     |
-| NIBRFilter               | SGD                       | 3.4813e+11      | 2.8188e+11     | 80.97     |
-| BMSFilter                | SGD                       | 3.4813e+11      | 3.0181e+11     | 86.69     |
-| MolecularWeightFilter    | SGD                       | 3.4813e+11      | 3.1138e+11     | 89.44     |
-| BMSFilter                | MLP                       | 1.0169          | 0.9362         | 92.05     |
+Poszczególne zbiory:
+MLP:
+| Filters            | Baseline RMSE | Predicted RMSE | Ratio [%] |
+|--------------------|---------------|----------------|-----------|
+| BMSFilter          | 1.0169        | 0.9362         | 92.05491741228104 |
+| NIHFilter          | 1.0169        | 0.9362         | 92.05491741228104 |
+| BrenkFilter        | 1.0169        | 0.9437         | 92.79482229043133 |
+| ZINCBasicFilter    | 1.0169        | 0.9527         | 93.68278449870652 |
+| BeyondRo5Filter    | 1.0169        | 0.9611         | 94.51065532222944 |
 
+SGD:
+| Filters               | Baseline RMSE     | Predicted RMSE    | Ratio [%]         |
+|-----------------------|-------------------|-------------------|-------------------|
+| RuleOfXuFilter        | 348130841015.0978 | 281581062897.8752 | 80.88368789068694 |
+| NIBRFilter            | 348130841015.0978 | 281880434402.9831 | 80.96968185325427 |
+| BMSFilter             | 348130841015.0978 | 301807893612.5406 | 86.69381107761487 |
+| MolecularWeightFilter | 348130841015.0978 | 311381299657.7815 | 89.44375590218894 |
+| ZINCBasicFilter       | 348130841015.0978 | 353571156216.5    | 101.56272141403477 |
+
+SVM:
+| Filters               | Baseline RMSE     | Predicted RMSE    | Ratio [%]         |
+|-----------------------|-------------------|-------------------|-------------------|
+| MolecularWeightFilter | 0.8209            | 0.8226            | 100.20522244227888 |
+| LipinskiFilter        | 0.8209            | 0.8229            | 100.23767176070368 |
+| BeyondRo5Filter       | 0.8209            | 0.8230            | 100.25648211807685 |
+| PAINSFilter           | 0.8209            | 0.8234            | 100.29358381948721 |
+| ZINCBasicFilter       | 0.8209            | 0.8237            | 100.34081058763374 |
 
 Dla dwóch filtrów:
+| Dataset | Model         | Filters                               | Baseline RMSE     | Predicted RMSE    | Ratio [%]           |
+|---------|---------------|---------------------------------------|-------------------|-------------------|---------------------|
+| 1159    | lipophilicity | SGD                                   | PfizerFilter, RuleOfTwoFilter | 482070154095.9755 | 2.1405            | 4.4402935650318243e-10 |
+| 1113    | lipophilicity | SGD                                   | NIBRFilter, ZINCBasicFilter  | 482070154095.9755 | 252457382879.1599 | 52.3694281286906 |
+| 1085    | lipophilicity | SGD                                   | MolecularWeightFilter, PAINSFilter | 482070154095.9755 | 264301451210.7948 | 54.826346116871385 |
+| 940     | lipophilicity | SGD                                   | GlaxoFilter, LipinskiFilter | 482070154095.9755 | 268547106469.5825 | 55.70705927090383 |
+| 1128    | lipophilicity | SGD                                   | NIHFilter, ZINCBasicFilter | 482070154095.9755 | 289609737358.7494 | 60.0762637757265 |
 
-| Filters                                 | Model Name                | Baseline RMSE   | Predicted RMSE | Ratio [%] |
-|-----------------------------------------|---------------------------|-----------------|----------------|-----------|
-| PfizerFilter, RuleOfTwoFilter           | SGD                       | 4.8207e+11      | 2.1405e+00     | 0.00      |
-| NIBRFilter, ZINCBasicFilter             | SGD                       | 4.8207e+11      | 2.5246e+11     | 52.37     |
-| MolecularWeightFilter, PAINSFilter      | SGD                       | 4.8207e+11      | 2.6430e+11     | 54.83     |
-| GlaxoFilter, LipinskiFilter             | SGD                       | 4.8207e+11      | 2.6855e+11     | 55.71     |
-| NIHFilter, ZINCBasicFilter              | SGD                       | 4.8207e+11      | 2.8961e+11     | 60.08     |
+Poszczególne klasyfikatory:
+MLP:
+| Filters                              | Baseline RMSE | Predicted RMSE | Ratio [%]         |
+|--------------------------------------|----------------|----------------|-------------------|
+| BMSFilter, MolecularWeightFilter     | 1.0169         | 0.9251         | 90.96552604714513 |
+| MolecularWeightFilter, NIHFilter     | 1.0169         | 0.9251         | 90.96552604714513 |
+| BMSFilter, NIHFilter                 | 1.0169         | 0.9362         | 92.05491741228104 |
+| BrenkFilter, ZINCDruglikeFilter      | 1.0169         | 0.9446         | 92.88675884167577 |
+| BeyondRo5Filter, NIHFilter           | 1.0169         | 0.9446         | 92.88679741110418 |
+
+SGD:
+| Filters                              | Baseline RMSE         | Predicted RMSE        | Ratio [%]          |
+|--------------------------------------|-----------------------|-----------------------|--------------------|
+| PfizerFilter, RuleOfTwoFilter        | 482070154095.9755     | 2.1405                | 4.4402935650318243e-10 |
+| NIBRFilter, ZINCBasicFilter          | 482070154095.9755     | 252457382879.1599     | 52.3694281286906   |
+| MolecularWeightFilter, PAINSFilter   | 482070154095.9755     | 264301451210.7948     | 54.826346116871385 |
+| GlaxoFilter, LipinskiFilter          | 482070154095.9755     | 268547106469.5825     | 55.70705927090383  |
+| NIHFilter, ZINCBasicFilter           | 482070154095.9755     | 289609737358.7494     | 60.0762637757265   |
+
+SVM:
+| Filters                              | Baseline RMSE         | Predicted RMSE        | Ratio [%]          |
+|--------------------------------------|-----------------------|-----------------------|--------------------|
+| LipinskiFilter, MolecularWeightFilter | 0.8209                | 0.8229                | 100.23767176070368 |
+| BeyondRo5Filter, MolecularWeightFilter| 0.8209                | 0.8230                | 100.25648211807685 |
+| LipinskiFilter, ZINCBasicFilter      | 0.8209                | 0.8233                | 100.29205561717404 |
+| BeyondRo5Filter, LipinskiFilter      | 0.8209                | 0.8234                | 100.30129382620237 |
+| GlaxoFilter, MolecularWeightFilter   | 0.8209                | 0.8237                | 100.3407537884593  |
+
+## Kod użyty do testowania:
 
 
