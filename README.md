@@ -341,8 +341,6 @@ Dla jednego filtra:
 | NIBRFilter            | GradientBoostingClassifier | 95.5          | 95.20                 | -0.30               |
 | BeyondRo5Filter       | GradientBoostingClassifier | 95.5          | 94.53                 | -1.00               |
 
-Dla dwóch filtrów:
-
 ---
 
 ## Wyniki regresji:
