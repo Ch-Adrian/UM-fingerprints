@@ -1,0 +1,2 @@
+Dataset,Model,Filter type,Metric,Baseline value,After filter application,Improvement (%),Notes
+bace222,LogisticRegression,-,ROC-AUC,0.4753,-1,-1,None
