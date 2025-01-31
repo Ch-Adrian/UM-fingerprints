@@ -341,7 +341,64 @@ Dla jednego filtra:
 | NIBRFilter            | GradientBoostingClassifier | 95.5          | 95.20                 | -0.30               |
 | BeyondRo5Filter       | GradientBoostingClassifier | 95.5          | 94.53                 | -1.00               |
 
----
+Dla poszczególnych klasyfikatorów:
+GradientBoostingClassifier:
+
+| Filters               | Baseline Value | Predicted ROC-AUC | Ratio [%] |
+|-----------------------|---------------|-------------------|-----------|
+| InpharmaticaFilter   | 95.4923       | -0.0119          | 99.9876   |
+| NIBRFilter          | 95.4923       | -0.1423          | 99.8509   |
+| BeyondRo5Filter     | 95.4923       | -0.3084          | 99.677    |
+| SureChEMBLFilter    | 95.4923       | -0.3796          | 99.6025   |
+| LINTFilter         | 95.4923       | -0.5457          | 99.4286   |
+
+LogisticRegression:
+
+| Filters               | Baseline Value | Predicted ROC-AUC | Ratio [%]  |
+|-----------------------|---------------|-------------------|------------|
+| GlaxoFilter          | 91.032        | 1.3998            | 101.5377   |
+| RuleOfXuFilter       | 91.032        | -0.5694           | 99.3745    |
+| MolecularWeightFilter | 91.032       | -0.7592           | 99.166     |
+| SureChEMBLFilter     | 91.032        | -1.1151           | 98.7751    |
+| PAINSFilter         | 91.032        | -1.8743           | 97.9411    |
+
+GaussianNB:
+| Filters                 | Baseline Value | Predicted ROC-AUC | Ratio [%]  |
+|-------------------------|---------------|-------------------|------------|
+| BrenkFilter            | 50.0          | 10.0              | 120.0      |
+| NIBRFilter             | 50.0          | 10.0              | 120.0      |
+| TiceInsecticidesFilter | 50.0          | 6.6667            | 113.3333   |
+| REOSFilter             | 50.0          | 6.6667            | 113.3333   |
+| LINTFilter             | 50.0          | 6.6667            | 113.3333   |
+
+
+Dla dwóch filtrów:
+| Dataset | Model                        | Filters                                   | Baseline Value | Predicted ROC-AUC | Ratio [%]  |
+|---------|-----------------------------|-------------------------------------------|----------------|-------------------|------------|
+| clintox | GradientBoostingClassifier  | GlaxoFilter; RuleOfVeberFilter          | 94.5433        | 1.3286            | 101.4053   |
+| clintox | GradientBoostingClassifier  | BMSFilter; RuleOfXuFilter               | 94.5433        | 1.0913            | 101.1543   |
+| clintox | GradientBoostingClassifier  | BeyondRo5Filter; RuleOfVeberFilter      | 94.5433        | 0.9964            | 101.054    |
+| clintox | GradientBoostingClassifier  | InpharmaticaFilter; LINTFilter          | 94.5433        | 0.9253            | 100.9787   |
+| clintox | GradientBoostingClassifier  | BeyondRo5Filter; GlaxoFilter            | 94.5433        | 0.8304            | 100.8783   |
+
+Dla poszczególnych klasyfikatorów:
+GradientBoostingClassifier:
+| Filters                                | Baseline Value | Predicted ROC-AUC | Ratio [%] |
+|----------------------------------------|----------------|-------------------|-----------|
+| GlaxoFilter; RuleOfVeberFilter        | 94.5433        | 1.3286            | 101.4053  |
+| BMSFilter; RuleOfXuFilter             | 94.5433        | 1.0913            | 101.1543  |
+| BeyondRo5Filter; RuleOfVeberFilter    | 94.5433        | 0.9964            | 101.054   |
+| InpharmaticaFilter; LINTFilter        | 94.5433        | 0.9253            | 100.9787  |
+| BeyondRo5Filter; GlaxoFilter          | 94.5433        | 0.8304            | 100.8783  |
+
+LogisticRegression:
+| Filters                                | Baseline Value | Predicted ROC-AUC | Ratio [%] |
+|----------------------------------------|----------------|-------------------|-----------|
+| GlaxoFilter; PAINSFilter               | 91.032         | 0.1898            | 100.2085  |
+| GlaxoFilter; SureChEMBLFilter          | 91.032         | 0.1186            | 100.1303  |
+| GlaxoFilter; MolecularWeightFilter     | 91.032         | -0.3321           | 99.6351   |
+| RuleOfXuFilter; SureChEMBLFilter      | 91.032         | -1.2574           | 98.6187   |
+| LipinskiFilter; RuleOfXuFilter        | 91.032         | -1.5184           | 98.332    |
 
 ## Wyniki regresji:
 
